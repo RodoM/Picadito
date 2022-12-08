@@ -2,22 +2,22 @@
   <div class="relative w-full">
     <div class="bg-blue-500 bg-opacity-30 h-[20rem] md:h-[25rem] w-full py-6 border-2 border-white rounded rounded-b-none">
       <div class="flex flex-col justify-between h-full">
-        <PlayerDot :playerName="players[0].playerName"/>
+        <PlayerDot :player="players[0]"/>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[1].playerName"/>
-          <PlayerDot :playerName="players[2].playerName"/>
-          <PlayerDot :playerName="players[3].playerName"/>
-          <PlayerDot :playerName="players[4].playerName"/>
+          <PlayerDot :player="players[1]"/>
+          <PlayerDot :player="players[2]"/>
+          <PlayerDot :player="players[3]"/>
+          <PlayerDot :player="players[4]"/>
         </div>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[5].playerName"/>
-          <PlayerDot :playerName="players[6].playerName"/>
-          <PlayerDot :playerName="players[7].playerName"/>
+          <PlayerDot :player="players[5]"/>
+          <PlayerDot :player="players[6]"/>
+          <PlayerDot :player="players[7]"/>
         </div> 
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[8].playerName"/>
-          <PlayerDot :playerName="players[9].playerName"/>
-          <PlayerDot :playerName="players[10].playerName"/>
+          <PlayerDot :player="players[8]"/>
+          <PlayerDot :player="players[9]"/>
+          <PlayerDot :player="players[10]"/>
         </div>
       </div>
     </div>
@@ -25,22 +25,22 @@
     <div class="bg-red-500 bg-opacity-30 h-[20rem] md:h-[25rem] w-full py-6 border-2 border-white rounded rounded-t-none border-t-0">
       <div class="flex flex-col justify-between h-full">
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[12].playerName"/>
-          <PlayerDot :playerName="players[13].playerName"/>
-          <PlayerDot :playerName="players[14].playerName"/>
+          <PlayerDot :player="players[12]"/>
+          <PlayerDot :player="players[13]"/>
+          <PlayerDot :player="players[14]"/>
         </div>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[15].playerName"/>
-          <PlayerDot :playerName="players[16].playerName"/>
-          <PlayerDot :playerName="players[17].playerName"/>
+          <PlayerDot :player="players[15]"/>
+          <PlayerDot :player="players[16]"/>
+          <PlayerDot :player="players[17]"/>
         </div>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[18].playerName"/>
-          <PlayerDot :playerName="players[19].playerName"/>
-          <PlayerDot :playerName="players[20].playerName"/>
-          <PlayerDot :playerName="players[21].playerName"/>
+          <PlayerDot :player="players[18]"/>
+          <PlayerDot :player="players[19]"/>
+          <PlayerDot :player="players[20]"/>
+          <PlayerDot :player="players[21]"/>
         </div>
-        <PlayerDot :playerName="players[11].playerName"/>
+        <PlayerDot :player="players[11]"/>
       </div>
     </div>
   </div>

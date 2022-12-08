@@ -15,12 +15,19 @@
           <div v-if="modality <= 12">
             <ul class="flex flex-col gap-2">
               <li v-for="player in players" :key="player">
-                <input
-                  type="text"
-                  v-model="player.playerName"
-                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
-                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
-                >
+                <div class="flex">
+                  <span
+                    class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
+                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                  >
+                    {{player.id}}
+                  </span>
+                  <input
+                    type="text"
+                    v-model="player.playerName"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  >
+                </div>
               </li>
             </ul>
           </div>
@@ -28,22 +35,36 @@
           <div v-else class="grid grid-cols-2 gap-3">
             <ul class="flex flex-col gap-2">
               <li v-for="player in players.slice(0, modality / 2)" :key="player">
-                <input
-                  type="text"
-                  v-model="player.playerName"
-                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
-                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
-                >
+                <div class="flex">
+                  <span
+                    class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
+                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                  >
+                    {{player.id}}
+                  </span>
+                  <input
+                    type="text"
+                    v-model="player.playerName"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  >
+                </div>
               </li>
             </ul>
             <ul class="flex flex-col gap-2">
               <li v-for="player in players.slice(modality / 2, modality)" :key="player">
-                <input
-                  type="text"
-                  v-model="player.playerName"
-                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
-                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
-                >
+                <div class="flex">
+                  <span
+                    class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
+                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                  >
+                    {{player.id}}
+                  </span>
+                  <input
+                    type="text"
+                    v-model="player.playerName"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  >
+                </div>
               </li>
             </ul>
           </div>
@@ -67,12 +88,12 @@
           <!-- TODO: Deshabilitar el boton hasta que se llenen todos los inputs -->
           <button @click="mixTeams()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mezclar</button>
 
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+          <!-- <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             <div class="flex items-center gap-4">
               <ShareIcon/>
               <span>Compartir formación</span>
             </div>
-          </button>
+          </button> -->
         </div>
       </section>
     </div>
@@ -81,7 +102,7 @@
 
 <script>
 import InfoIcon from '@/assets/icons/infoIcon.vue'
-import ShareIcon from '@/assets/icons/ShareIcon.vue'
+// import ShareIcon from '@/assets/icons/ShareIcon.vue'
 import FivePitch from '@/components/Pitchs/FivePitch.vue'
 import SixPitch from '@/components/Pitchs/SixPitch.vue'
 import EightPitch from '@/components/Pitchs/EightPitch.vue'
@@ -91,7 +112,7 @@ export default {
   name: 'ModalityView',
   components: {
     InfoIcon,
-    ShareIcon,
+    // ShareIcon,
     FivePitch,
     SixPitch,
     EightPitch,

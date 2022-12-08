@@ -2,15 +2,15 @@
   <div class="relative w-full">
     <div class="bg-blue-500 bg-opacity-30 h-[20rem] w-full py-6 border-2 border-white rounded rounded-b-none">
       <div class="flex flex-col justify-between h-full">
-        <PlayerDot :playerName="players[0].playerName"/>
+        <PlayerDot :player="players[0]"/>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[1].playerName"/>
-          <PlayerDot :playerName="players[2].playerName"/>
-          <PlayerDot :playerName="players[3].playerName"/>
+          <PlayerDot :player="players[1]"/>
+          <PlayerDot :player="players[2]"/>
+          <PlayerDot :player="players[3]"/>
         </div>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[4].playerName"/>
-          <PlayerDot :playerName="players[5].playerName"/>
+          <PlayerDot :player="players[4]"/>
+          <PlayerDot :player="players[5]"/>
         </div>
       </div>
     </div>
@@ -18,15 +18,15 @@
     <div class="bg-red-500 bg-opacity-30 h-[20rem] w-full py-6 border-2 border-white rounded rounded-t-none border-t-0">
       <div class="flex flex-col justify-between h-full">
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[7].playerName"/>
-          <PlayerDot :playerName="players[8].playerName"/>
+          <PlayerDot :player="players[7]"/>
+          <PlayerDot :player="players[8]"/>
         </div>
         <div class="flex justify-around">
-          <PlayerDot :playerName="players[9].playerName"/>
-          <PlayerDot :playerName="players[10].playerName"/>
-          <PlayerDot :playerName="players[11].playerName"/>
+          <PlayerDot :player="players[9]"/>
+          <PlayerDot :player="players[10]"/>
+          <PlayerDot :player="players[11]"/>
         </div>
-        <PlayerDot :playerName="players[6].playerName"/>
+        <PlayerDot :player="players[6]"/>
       </div>
     </div>
   </div>
