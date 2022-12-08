@@ -14,18 +14,18 @@
           
           <div v-if="modality <= 12">
             <ul class="flex flex-col gap-2">
-              <li v-for="player in players" :key="player">
+              <li v-for="(player, index) in players" :key="player">
                 <div class="flex">
                   <span
                     class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
-                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                    :class="index + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
                   >
-                    {{player.id}}
+                    {{index}}
                   </span>
                   <input
                     type="text"
                     v-model="player.playerName"
-                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${index}`"
                   >
                 </div>
               </li>
@@ -34,35 +34,33 @@
 
           <div v-else class="grid grid-cols-2 gap-3">
             <ul class="flex flex-col gap-2">
-              <li v-for="player in players.slice(0, modality / 2)" :key="player">
+              <li v-for="(player, index) in players.slice(0, modality / 2)" :key="player">
                 <div class="flex">
                   <span
-                    class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
-                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                    class="inline-flex justify-center bg-blue-500 items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
                   >
-                    {{player.id}}
+                    {{index}}
                   </span>
                   <input
                     type="text"
                     v-model="player.playerName"
-                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${index}`"
                   >
                 </div>
               </li>
             </ul>
             <ul class="flex flex-col gap-2">
-              <li v-for="player in players.slice(modality / 2, modality)" :key="player">
+              <li v-for="(player, index) in players.slice(modality / 2, modality)" :key="player">
                 <div class="flex">
                   <span
-                    class="inline-flex justify-center items-center px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
-                    :class="player.id + 1 <= modality / 2 ? 'bg-blue-500' : 'bg-red-500'"
+                    class="inline-flex justify-center items-center bg-red-500 px-3 text-sm text-white border border-r-0 rounded-l-md min-w-[2.3rem]"
                   >
-                    {{player.id}}
+                    {{index + (modality / 2)}}
                   </span>
                   <input
                     type="text"
                     v-model="player.playerName"
-                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg rounded-l-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${index + (modality / 2)}`"
                   >
                 </div>
               </li>
