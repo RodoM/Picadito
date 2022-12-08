@@ -8,6 +8,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+
+  mounted() {
+    let recaptchaScript = document.createElement('script')
+    recaptchaScript.setAttribute('src', 'https://unpkg.com/flowbite@1.5.4/dist/flowbite.js')
+    document.head.appendChild(recaptchaScript)
+  },
+}
+</script>
+
 <style>
 .fade-enter-active,
 .fade-leave-active {

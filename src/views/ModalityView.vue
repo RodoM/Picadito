@@ -1,30 +1,52 @@
 <template>
-  <main class="flex min-h-screen bg-gray-900">
-    <div class="container flex flex-col items-center justify-center gap-10 mx-auto md:flex-row">
-      <section id="left-side">
-        <div class="px-4 py-2 bg-white rounded bg-opacity-30">
-          <span class="text-white">Pizarra de ideas:</span>
-          <ul>
-            <li class="text-white">- Un solo campo de juego, en cada mitad va un equipo</li>
-            <li class="text-white">- Dos campos de juegos, en cada uno va un equipo bien desplegado</li>
-            <li class="text-white">- Botones con formaciones que cambian la disposicion del equipo en el campo</li>
-          </ul>
-        </div>
+  <main class="flex min-h-screen">
+    <div class="container flex flex-col-reverse items-center justify-center gap-10 mx-auto md:flex-row">
+      <section id="left-side" class="max-w-lg m-2 mb-5 bg-gray-900 max-width md:mb-0">
+        <FivePitch v-if="modality === 10" :players="players"/>
+        <SixPitch v-else-if="modality === 12" :players="players"/>
+        <EightPitch v-else-if="modality === 16" :players="players"/>
+        <ElevenPitch v-else-if="modality === 22" :players="players"/>
       </section>
 
       <section id="right-side">
-        <div class="flex flex-col gap-2">
-          <span class="text-5xl font-bold text-white">Jugadores:</span>
-          <ul class="flex flex-col gap-2">
-            <li v-for="player in modality" :key="player">
-              <input
-                type="text"
-                v-model="players[player - 1].playerName"
-                class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player - 1}`"
-                :class="player <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
-              >
-            </li>
-          </ul>
+        <div class="flex flex-col gap-3">
+          <span class="mt-10 text-5xl font-bold text-white md:mt-0">Jugadores:</span>
+          
+          <div v-if="modality <= 12">
+            <ul class="flex flex-col gap-2">
+              <li v-for="player in players" :key="player">
+                <input
+                  type="text"
+                  v-model="player.playerName"
+                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div v-else class="grid grid-cols-2 gap-3">
+            <ul class="flex flex-col gap-2">
+              <li v-for="player in players.slice(0, modality / 2)" :key="player">
+                <input
+                  type="text"
+                  v-model="player.playerName"
+                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
+                >
+              </li>
+            </ul>
+            <ul class="flex flex-col gap-2">
+              <li v-for="player in players.slice(modality / 2, modality)" :key="player">
+                <input
+                  type="text"
+                  v-model="player.playerName"
+                  class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="`Jugador${player.id}`"
+                  :class="player.id + 1 <= modality / 2 ? 'border-blue-500' : 'border-red-500'"
+                >
+              </li>
+            </ul>
+          </div>
 
           <div class="flex items-center justify-between">
             <label class="relative inline-flex items-center cursor-pointer">
@@ -44,6 +66,13 @@
 
           <!-- TODO: Deshabilitar el boton hasta que se llenen todos los inputs -->
           <button @click="mixTeams()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mezclar</button>
+
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <div class="flex items-center gap-4">
+              <ShareIcon/>
+              <span>Compartir formación</span>
+            </div>
+          </button>
         </div>
       </section>
     </div>
@@ -52,11 +81,21 @@
 
 <script>
 import InfoIcon from '@/assets/icons/infoIcon.vue'
+import ShareIcon from '@/assets/icons/ShareIcon.vue'
+import FivePitch from '@/components/Pitchs/FivePitch.vue'
+import SixPitch from '@/components/Pitchs/SixPitch.vue'
+import EightPitch from '@/components/Pitchs/EightPitch.vue'
+import ElevenPitch from '@/components/Pitchs/ElevenPitch.vue'
 
 export default {
   name: 'ModalityView',
   components: {
     InfoIcon,
+    ShareIcon,
+    FivePitch,
+    SixPitch,
+    EightPitch,
+    ElevenPitch,
   },
   data() {
     return {
@@ -69,14 +108,8 @@ export default {
   created() {
     this.modality = parseInt(this.$route.params.modalidad, 10) * 2;
     for (let i = 0; i < this.modality; i++) {
-      this.players.push({playerName: undefined});
+      this.players.push({id: i, playerName: undefined});
     }
-  },
-
-  mounted() {
-    let recaptchaScript = document.createElement('script')
-    recaptchaScript.setAttribute('src', 'https://unpkg.com/flowbite@1.5.4/dist/flowbite.js')
-    document.head.appendChild(recaptchaScript)
   },
 
   methods: {
@@ -95,7 +128,13 @@ export default {
         } else {
         this.players = this.players.sort(() => Math.random() - 0.5);
       }
-    }
+    },
   }
 }
 </script>
+
+<style scoped>
+.max-width {
+  width: -webkit-fill-available;
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
-  <main class="h-screen bg-gray-900 flex">
-    <div class="container mx-auto flex flex-col justify-center items-center gap-10">
-      <span class="text-white text-center font-bold text-5xl">Elige una modalidad de partido</span>
-      <ul class="grid md:grid-cols-2 md:grid-rows-2 gap-2">
+  <main class="flex min-h-screen">
+    <div class="container flex flex-col items-center justify-center gap-10 mx-auto">
+      <span class="text-5xl font-bold text-center text-white">Elige una modalidad de partido</span>
+      <ul class="grid grid-cols-2 grid-rows-2 gap-2">
         <li v-for="modality in modalities" :key="modality">
           <router-link :to="{name: 'modalidad', params: {modalidad: modality}}">
-            <div class="bg-gray-800 rounded text-white text-center p-10 hover:bg-gray-600 transition">
-              <span class="text-7xl font-extrabold">{{modality}}</span>
+            <div class="p-10 text-center text-white transition bg-gray-800 rounded hover:bg-gray-600">
+              <span class="font-extrabold text-7xl">{{modality}}</span>
             </div>
           </router-link>
         </li>

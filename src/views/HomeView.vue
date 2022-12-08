@@ -1,11 +1,11 @@
 <template>
-  <main class="h-screen bg-gray-900 flex">
-    <div class="flex flex-col md:flex-row justify-center items-center gap-5 container mx-auto">
+  <main class="flex h-screen">
+    <div class="container flex flex-col items-center justify-center gap-5 mx-auto md:flex-row">
       <section id="left-side" class="flex flex-col gap-4">
-        <h1 class="text-white text-center md:text-start text-6xl font-extrabold">Picadito</h1>
-        <p class="text-gray-500 md:text-start text-center">Una webapp para organizar los equipos de tus partidos de futbol</p>
+        <h1 class="text-6xl font-extrabold text-center text-white md:text-start">Picadito</h1>
+        <p class="text-center text-gray-500 md:text-start">Una webapp para organizar los equipos de tus partidos de futbol</p>
         
-        <div class="flex justify-center md:justify-start gap-5">
+        <div class="flex justify-center gap-5 md:justify-start">
           <router-link to="/modalidades">
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Empezar</button>
           </router-link>
