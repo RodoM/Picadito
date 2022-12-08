@@ -1,8 +1,8 @@
 <template>
-  <main class="min-h-screen bg-gray-900 flex">
-    <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-10">
+  <main class="flex min-h-screen bg-gray-900">
+    <div class="container flex flex-col items-center justify-center gap-10 mx-auto md:flex-row">
       <section id="left-side">
-        <div class="bg-white bg-opacity-30 rounded px-4 py-2">
+        <div class="px-4 py-2 bg-white rounded bg-opacity-30">
           <span class="text-white">Pizarra de ideas:</span>
           <ul>
             <li class="text-white">- Un solo campo de juego, en cada mitad va un equipo</li>
@@ -13,10 +13,9 @@
       </section>
 
       <section id="right-side">
-        <div class="flex flex-col">
-          <span class="text-white font-bold text-5xl mb-4">Jugadores:</span>
+        <div class="flex flex-col gap-2">
+          <span class="text-5xl font-bold text-white">Jugadores:</span>
           <ul class="flex flex-col gap-2">
-            <!-- TODO: checkbox para determinar si un jugador es arquero fijo y no mezclarlo -->
             <li v-for="player in modality" :key="player">
               <input
                 type="text"
@@ -26,8 +25,25 @@
               >
             </li>
           </ul>
+
+          <div class="flex items-center justify-between">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" v-model="goalKeepers" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Arqueros fijos</span>
+            </label>
+
+            <InfoIcon data-popover-target="popover-default"/>
+            <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="px-3 py-2">
+                <p>Activando esta opción, los primeros jugadores de cada equipo serán tomados en cuenta como arqueros fijos.</p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+          </div>
+
           <!-- TODO: Deshabilitar el boton hasta que se llenen todos los inputs -->
-          <button @click="mixTeams()" type="button" class=" mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mezclar</button>
+          <button @click="mixTeams()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mezclar</button>
         </div>
       </section>
     </div>
@@ -35,15 +51,18 @@
 </template>
 
 <script>
+import InfoIcon from '@/assets/icons/infoIcon.vue'
 
 export default {
   name: 'ModalityView',
   components: {
+    InfoIcon,
   },
   data() {
     return {
       modality: undefined,
       players: [],
+      goalKeepers: false,
     }
   },
 
@@ -54,10 +73,28 @@ export default {
     }
   },
 
+  mounted() {
+    let recaptchaScript = document.createElement('script')
+    recaptchaScript.setAttribute('src', 'https://unpkg.com/flowbite@1.5.4/dist/flowbite.js')
+    document.head.appendChild(recaptchaScript)
+  },
+
   methods: {
     mixTeams() {
-      console.log('se disparo');
-      this.players = this.players.sort(() => Math.random() - 0.5);
+      if (this.goalKeepers) {
+        const goalKeeper1 = this.players[0];
+        const goalKeeper2 = this.players[this.modality / 2];
+
+        this.players.splice(this.modality/2, 1);
+        this.players.splice(0, 1);
+
+        this.players = this.players.sort(() => Math.random() - 0.5);
+
+        this.players.splice(0, 0, goalKeeper1);
+        this.players.splice(this.modality/2, 0, goalKeeper2);
+        } else {
+        this.players = this.players.sort(() => Math.random() - 0.5);
+      }
     }
   }
 }
